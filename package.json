@@ -4,8 +4,7 @@
   "description": "Projeto teste com Node.js e Express",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon",
-    "debug":"nodemon --inspect server.js"
+    "dev":"nodemon"
   },
   "repository": {
     "type": "git",

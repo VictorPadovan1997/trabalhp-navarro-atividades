@@ -1,32 +1,36 @@
-var Produto = require('../app/models/product');
-var mongoose = require('mongoose');
+const Produto = require('../app/models/product')
+const mongoose = require('mongoose')
 
+//GetAll - repository
 exports.get = async () => {
     const res = await Produto.find();
     return res;
 }
 
-
-exports.getById = async (id) => {
+//GetById - repository
+exports.getById = async(id) =>{
     const res = await Produto.findById(id);
     return res;
 }
 
-exports.put = async (id, data) => {
+//Post - repository
+exports.post = async(data) =>{
+    const product = new Produto(data);
+    await product.save();
+} 
+
+//Put - repository
+exports.put = async(id, data) =>{
     await Produto.findByIdAndUpdate(id, {
-        $set: {
+        $set:{
             nome: data.nome,
             preco: data.preco,
-            descricao: data.descricao
+            descricao:data.descricao
         }
     });
 }
 
-exports.post = async (data) => {
-    var product = new Produto(data);
-    await product.save();
-}
-
-exports.delete = async (id) => {
+//Delete - repositpory
+exports.delete = async(id) =>{
     await Produto.findOneAndRemove(id);
 }
